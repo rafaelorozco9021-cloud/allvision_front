@@ -33,7 +33,7 @@
 
       <!-- Imagen principal (miniatura unica) -->
       <figure v-if="activeImage" class="article__figure">
-        <img :src="activeImage" :alt="news.title" class="article__image" />
+        <img :src="activeImage" :alt="news.title" class="article__image" @error="hideThumb" />
         <figcaption class="article__caption">Imagen: {{ news.source }}</figcaption>
       </figure>
 
