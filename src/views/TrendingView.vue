@@ -4,6 +4,7 @@ import { useRouter } from 'vue-router';
 import { useNewsStore } from '@/stores/news.store';
 import SectionTitle from '@/components/home/SectionTitle.vue';
 import TimeAgo from '@/components/common/TimeAgo.vue';
+import ImageUnavailable from '@/components/news/ImageUnavailable.vue';
 import SkeletonLoader from '@/components/common/SkeletonLoader.vue';
 import EmptyState from '@/components/common/EmptyState.vue';
 import type { NewsItem } from '@/types/api.types';
@@ -48,6 +49,14 @@ function go(item: NewsItem) {
         <span class="ranking__rank" :class="{ 'ranking__rank--top': i === 0 }">{{ pad(i) }}</span>
         <div class="ranking__media">
           <img v-if="item.mainImage" :src="item.mainImage" :alt="item.title" class="ranking__image" loading="lazy" />
+          <ImageUnavailable
+            v-else
+            size="sm"
+            :blocked="item.imagesBlocked"
+            :source="item.source"
+            :url="item.url"
+            compact
+          />
         </div>
         <div class="ranking__info">
           <span class="ranking__tag">{{ item.source }}</span>

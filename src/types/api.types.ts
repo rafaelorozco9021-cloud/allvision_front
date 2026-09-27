@@ -14,6 +14,8 @@ export interface NewsItem {
   viralScore: number;
   sourceCount: number;
   socialMetrics: { shares?: number; likes?: number; comments?: number } | null;
+  /** La fuente no autoriza republicar su fotografia (politica de imagenes). */
+  imagesBlocked?: boolean;
 }
 
 export interface NewsListResponse {

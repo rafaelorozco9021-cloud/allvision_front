@@ -2,7 +2,14 @@
   <article v-if="news" class="hero-feature" role="link" :tabindex="0" @click="go" @keydown.enter="go">
     <div class="hero-feature__media">
       <img v-if="news.mainImage" :src="news.mainImage" :alt="news.title" class="hero-feature__image" />
-      <div v-else class="hero-feature__placeholder"></div>
+      <ImageUnavailable
+        v-else
+        size="md"
+        :blocked="news.imagesBlocked"
+        :source="news.source"
+        :url="news.url"
+        compact
+      />
       <span class="hero-feature__badge">
         <span class="hero-feature__badge-dot" aria-hidden="true"></span>
         Destacada
@@ -35,6 +42,7 @@
 import { computed } from 'vue';
 import { useRouter } from 'vue-router';
 import TimeAgo from '@/components/common/TimeAgo.vue';
+import ImageUnavailable from '@/components/news/ImageUnavailable.vue';
 import { sourceColor } from '@/utils/sourceColor';
 import type { NewsItem } from '@/types/api.types';
 
@@ -75,11 +83,6 @@ function go() {
 }
 .hero-feature:hover .hero-feature__image {
   transform: scale(1.03);
-}
-.hero-feature__placeholder {
-  width: 100%;
-  min-height: 380px;
-  background: linear-gradient(120deg, var(--zc-hair), var(--zc-surface));
 }
 .hero-feature__badge {
   position: absolute;
@@ -195,8 +198,7 @@ function go() {
     grid-template-columns: 1fr;
     gap: 1.25rem;
   }
-  .hero-feature__image,
-  .hero-feature__placeholder {
+  .hero-feature__image {
     min-height: 260px;
   }
 }

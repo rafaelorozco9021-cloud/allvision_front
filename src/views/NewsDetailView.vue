@@ -36,6 +36,14 @@
         <img :src="activeImage" :alt="news.title" class="article__image" @error="hideThumb" />
         <figcaption class="article__caption">Imagen: {{ news.source }}</figcaption>
       </figure>
+      <figure v-else class="article__figure article__figure--empty">
+        <ImageUnavailable
+          size="lg"
+          :blocked="news.imagesBlocked"
+          :source="news.source"
+          :url="news.url"
+        />
+      </figure>
 
       <!-- Cuerpo -->
       <div class="article__body">
@@ -116,6 +124,7 @@ import { computed, onMounted, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import { useNewsStore } from '@/stores/news.store';
 import TimeAgo from '@/components/common/TimeAgo.vue';
+import ImageUnavailable from '@/components/news/ImageUnavailable.vue';
 import ErrorState from '@/components/common/ErrorState.vue';
 import NewsCard from '@/components/news/NewsCard.vue';
 import { sourceColor } from '@/utils/sourceColor';
@@ -292,6 +301,10 @@ watch(
 .article__figure {
   margin: 0 0 1.2rem;
   max-width: 460px;
+}
+/* Sin fotografia: el placeholder ocupa el ancho completo del bloque. */
+.article__figure--empty {
+  max-width: 100%;
 }
 .article__image {
   width: 100%;

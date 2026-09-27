@@ -17,7 +17,14 @@
         loading="lazy"
         @error="handleImageError"
       />
-      <div v-else class="news-card__placeholder"></div>
+      <ImageUnavailable
+        v-else
+        size="sm"
+        :blocked="news.imagesBlocked"
+        :source="news.source"
+        :url="news.url"
+        compact
+      />
       <span
         v-if="news.sourceCount > 1"
         class="news-card__rep"
@@ -61,6 +68,7 @@
 import { computed } from 'vue';
 import { useRouter } from 'vue-router';
 import TimeAgo from '@/components/common/TimeAgo.vue';
+import ImageUnavailable from '@/components/news/ImageUnavailable.vue';
 import { sourceColor } from '@/utils/sourceColor';
 import type { NewsItem } from '@/types/api.types';
 
@@ -205,11 +213,6 @@ function navigate() {
 }
 .news-card:hover .news-card__image {
   transform: scale(1.04);
-}
-.news-card__placeholder {
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(120deg, var(--zc-hair), var(--zc-surface));
 }
 
 /* meta + título */
