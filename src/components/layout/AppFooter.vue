@@ -29,7 +29,9 @@
       <div class="site-footer__col">
         <h4 class="site-footer__title">Legales</h4>
         <ul class="site-footer__list">
-          <li v-for="l in legales" :key="l"><a href="#">{{ l }}</a></li>
+          <li v-for="l in legales" :key="l.id">
+            <router-link :to="{ path: '/legal', hash: '#' + l.id }">{{ l.label }}</router-link>
+          </li>
         </ul>
       </div>
     </div>
@@ -45,7 +47,15 @@
 import SocialLinks from '@/components/common/SocialLinks.vue';
 
 const sections = ['Generales', 'Mundo', 'Política', 'Sociales', 'Deportes', 'Tecnología', 'Judiciales', 'Opinión'];
-const legales = ['Nosotros', 'Contacto', 'Términos y condiciones', 'Política de privacidad'];
+const legales = [
+  { id: 'nosotros', label: 'Nosotros' },
+  { id: 'contenido', label: 'Contenido' },
+  { id: 'imagenes', label: 'Fotografías' },
+  { id: 'ia', label: 'Titulares con IA' },
+  { id: 'terminos', label: 'Términos y condiciones' },
+  { id: 'privacidad', label: 'Política de privacidad' },
+  { id: 'contacto', label: 'Contacto' },
+];
 </script>
 
 <style scoped>
