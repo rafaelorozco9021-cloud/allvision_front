@@ -11,13 +11,20 @@ export default defineConfig({
   },
   server: {
     port: 5173,
-    proxy: {
-      '/api': {
-        target: 'http://localhost:3000',
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ''),
-      },
-    },
+    proxy: (process.env.NODE_ENV === 'production'
+      ? 'https://allvision-back.onrender.com'
+      : 'http://localhost:3000'
+    ) !== undefined
+      ? {
+          '/api': {
+            target: process.env.NODE_ENV === 'production'
+              ? 'https://allvision-back.onrender.com'
+              : 'http://localhost:3000',
+            changeOrigin: true,
+            rewrite: (path) => path.replace(/^\/api/, ''),
+          },
+        }
+      : {},
   },
   build: {
     outDir: 'dist',

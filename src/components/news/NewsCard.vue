@@ -12,7 +12,7 @@
       <img
         v-if="news.mainImage"
         :src="news.mainImage"
-        :alt="news.title"
+        :alt="`${news.title} — foto de ${news.source}`"
         class="news-card__image"
         loading="lazy"
         @error="handleImageError"
@@ -23,6 +23,15 @@
         class="news-card__rep"
         :title="`Esta noticia aparecio en ${news.sourceCount} medios`"
       >×{{ news.sourceCount }}</span>
+      <a
+        v-if="news.mainImage"
+        :href="news.url"
+        target="_blank"
+        rel="noopener"
+        class="news-card__credit"
+        :title="`Ver la nota original en ${news.source}`"
+        @click.stop
+      >Foto: {{ news.source }}</a>
     </div>
 
     <div class="news-card__body">
@@ -116,6 +125,28 @@ function navigate() {
   border-radius: 999px;
   letter-spacing: 0.5px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+}
+/* Credito de la fotografia sobre la imagen: atribucion visible (opcion B). */
+.news-card__credit {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 1px 5px;
+  background: rgba(0, 0, 0, 0.62);
+  color: #fff;
+  font-family: 'Roboto Condensed', 'Arial Narrow', Arial, sans-serif;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  text-decoration: none;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.news-card__credit:hover {
+  background: var(--zc-primary);
 }
 .news-card__body {
   flex: 1;
