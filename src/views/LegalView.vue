@@ -27,6 +27,29 @@
         La portada se actualiza de forma programada cada 30 minutos. No tenemos una redacción ni
         publicamos notas propias.
       </p>
+
+      <h3>Datos del responsable</h3>
+      <p>
+        <strong>AllVision</strong> es una publicación digital privada, editada y publicada por
+        una persona natural inscrita en el Registro Único Tributario de la DIAN.
+      </p>
+      <p>
+        <strong>No publicamos el NIT.</strong> Tratándose de un contribuyente persona natural,
+        el número de identificación tributaria es un dato personal protegido por la Ley 1581 de
+        2012 (dato semiprivado) y la Ley 1712 de 2014 (art. 7), que restringe la publicación de
+        datos de particulares sin consentimiento expreso. La identificación completa puede
+        verificarse ante la DIAN o solicitarse a
+        <a :href="`mailto:${contact}`">{{ contact }}</a>, y se entrega a quien la solicite
+        acreditando su interés legítimo.
+      </p>
+      <p>
+        <strong>No publicamos el domicilio.</strong> La dirección física del titular se reserva
+        por la misma razón y no se difunde en este sitio.
+      </p>
+      <p>
+        <strong>Contacto:</strong>
+        <a :href="`mailto:${contact}`">{{ contact }}</a>
+      </p>
     </section>
 
     <!-- Contenido -->

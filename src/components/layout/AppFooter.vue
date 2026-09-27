@@ -38,7 +38,9 @@
 
     <div class="site-footer__bottom">
       <p>rodev9021 - todos los derechos reservados</p>
-      <p class="site-footer__addr">calle44 #5b-116 apto 2</p>
+      <p class="site-footer__addr">
+        <router-link to="/legal">Contenido, fuentes y datos del responsable</router-link>
+      </p>
     </div>
   </footer>
 </template>
