@@ -35,8 +35,8 @@
     </div>
 
     <div class="site-footer__bottom">
-      <p>AllVision.com · Todos los derechos reservados</p>
-      <p class="site-footer__addr">Calle 82 #55-55 — Oficina 310. Barranquilla, Colombia</p>
+      <p>rodev9021 - todos los derechos reservados</p>
+      <p class="site-footer__addr">calle44 #5b-116 apto 2</p>
     </div>
   </footer>
 </template>
