@@ -45,7 +45,12 @@ export const useNewsStore = defineStore('news', () => {
       if (reset) {
         news.value = items;
       } else {
-        news.value = [...news.value, ...items];
+        // Deduplica por id. El backend ya pagina con un orden estable, pero
+        // si dos disparos de scroll se cruzan antes de resolver, la misma
+        // pagina se anade dos veces y la nota aparece repetida en el feed.
+        const vistos = new Set(news.value.map((n) => n.id));
+        const nuevos = items.filter((n) => !vistos.has(n.id));
+        news.value = [...news.value, ...nuevos];
       }
       total.value = totalCount;
       page.value = p + 1;
